@@ -25,8 +25,8 @@ func (p *StringParser) Parse(input string) (Fields, error) {
 
 	for _, value := range values {
 		field := Field{
-			Name:  "",
-			Value: value,
+			name:  "",
+			value: value,
 		}
 		result = append(result, &field)
 	}

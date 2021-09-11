@@ -1,32 +1,18 @@
 # logsplitter
 A small library that splits log files into its separate parts.
 
-# Installation
-```
-$ go get https://github.com/dhanekom/logsplitter
-```
-
 # Usage
-Given a log file with the following content:
-```
-2021/08/28 19:41:15.740|ERROR|3|2222|An error message
-2021/08/30 19:41:15.740|INFO|2|1553|A log message
-```
-the following program will produce the following result
-```
-2021/08/28 19:41:15.740
-ERROR
-3
-2222
-An error message
------
-2021/08/30 19:41:15.740
-INFO
-2
-1553
-Starting SKU Refresh
-```
 
+Create a new folder for your Go application, navigate to the application folder. Initialize your Go module as follows
+
+```console
+$ go mod init example
+```
+Add logsplitter as a dependency to your project and get its source code:
+
+```console
+$ go get github.com/dhanekom/logsplitter
+```
 
 Example code:
 ```
@@ -62,7 +48,27 @@ for {
 	
   // Use the fields slice
   for _, field := range fields {
-    fmt.Println(field.Value)
+    fmt.Println(field.Value())
   }
 }
+```
+
+Given a log file with the following content:
+```
+2021/08/28 19:41:15.740|ERROR|3|2222|An error message
+2021/08/30 19:41:15.740|INFO|2|1553|A log message
+```
+the example code above will produce the following result:
+```
+2021/08/28 19:41:15.740
+ERROR
+3
+2222
+An error message
+-----
+2021/08/30 19:41:15.740
+INFO
+2
+1553
+Starting SKU Refresh
 ```

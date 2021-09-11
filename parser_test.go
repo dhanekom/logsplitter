@@ -69,8 +69,8 @@ func TestDelimParse(t *testing.T) {
 							if len(fields)-1 < test.columnIndex && test.result {
 								t.Errorf("attempting to access row field index %d while max index is %d", test.columnIndex, len(fields)-1)
 							} else {
-								if test.result && fields[test.columnIndex].Value != test.output {
-									t.Errorf("expected %s, got %s", test.output, fields[test.columnIndex].Value)
+								if test.result && fields[test.columnIndex].Value() != test.output {
+									t.Errorf("expected %s, got %s", test.output, fields[test.columnIndex].Value())
 								}
 							}
 						} else {
@@ -78,7 +78,7 @@ func TestDelimParse(t *testing.T) {
 								if sb.String() != "" {
 									sb.WriteString(test.concatDelim)
 								}
-								sb.WriteString(field.Value)
+								sb.WriteString(field.Value())
 							}
 
 							if test.output != sb.String() {
@@ -142,8 +142,8 @@ func TestRegexParse(t *testing.T) {
 							if len(fields)-1 < test.columnIndex && test.result {
 								t.Errorf("attempting to access row field index %d while max index is %d", test.columnIndex, len(fields)-1)
 							} else {
-								if test.result && fields[test.columnIndex].Value != test.output {
-									t.Errorf("expected %s, got %s", test.output, fields[test.columnIndex].Value)
+								if test.result && fields[test.columnIndex].Value() != test.output {
+									t.Errorf("expected %s, got %s", test.output, fields[test.columnIndex].Value())
 								}
 							}
 						} else {
@@ -151,7 +151,7 @@ func TestRegexParse(t *testing.T) {
 								if sb.String() != "" {
 									sb.WriteString(test.concatDelim)
 								}
-								sb.WriteString(field.Value)
+								sb.WriteString(field.Value())
 							}
 
 							if test.output != sb.String() {
